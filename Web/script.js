@@ -50,3 +50,40 @@ function validate_pdc_input() {
     }
 
 }
+
+
+
+
+
+// SPEECH RECOGNITION
+
+function start_speech_recognition() {
+
+    // Check if the browser supports speech recognition
+    if ('webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false; // Keep recognizing even if the user pauses
+        recognition.interimResults = true; // Show interim results before finalizing
+
+        // Event handler for when speech is recognized
+        recognition.onresult = function(event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                transcript += event.results[i][0].transcript;
+            }
+            document.getElementById("transcription_result").innerHTML = transcript;
+        };
+
+        // Event handler for errors
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error:', event.error);
+        };
+
+        // Start recognition
+        recognition.start();
+    } else {
+        console.error('Speech recognition not supported in this browser.');
+    }
+
+
+}

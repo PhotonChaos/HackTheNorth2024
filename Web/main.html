@@ -487,11 +487,32 @@
 
 <section id="medication_voice_question" style="min-height: calc(100vh - 97px);z-index:100;">
   
+  <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex flex-col items-center mt-8 mb-8">
+        <img class="w-10 h-10 mb-4" src="./img/medication.png" />
+        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Nicotine Polacrilex</h5>
+        <span class="text-sm text-gray-500 dark:text-gray-400">Dr. Reddy's Laboratories Inc.</span>
+    </div>
+  </div>
+
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
-   
-    <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">Ask questions related to this medication</p>
-   
+  
     <br>
+
+    <h1 class="text-5xl font-extrabold dark:text-white"><small id="transcription_result" class="ms-2 font-semibold text-gray-500 dark:text-gray-400">Ask anything</small></h1>
+    <p class="mt-6 mb-3 text-gray-500 dark:text-gray-400">Click the mic icon and start speaking</p>
+
+    <br><br>
+
+<div style="display:flex;justify-content: center;">
+  <button onclick="start_speech_recognition();" type="button" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+      <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9v3a5.006 5.006 0 0 1-5 5h-4a5.006 5.006 0 0 1-5-5V9m7 9v3m-3 0h6M11 3h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/>
+      </svg>
+  </button>
+</div>
+
+
 
     
 <!-- Show after a response has been generated -->
