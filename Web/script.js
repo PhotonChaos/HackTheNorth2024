@@ -28,3 +28,25 @@ function show_manual_code_error() {
     document.getElementById("manual_pdc_errortext").style.display = "block";
 
 }
+
+
+
+function validate_pdc_input() {
+
+    var input = document.getElementById("manual_pdc_input").value;
+
+    // Regular expression to match PDC format with hyphens
+    const pdcFormatRegex = /^\d{3}-\d{3}-\d{4}$/;
+
+    if (pdcFormatRegex.test(input)) {
+
+        // Allow to continue
+        alert("Success!");
+
+    }
+
+    else {
+        show_manual_code_error();
+    }
+
+}
