@@ -79,6 +79,18 @@ function start_speech_recognition() {
             console.error('Speech recognition error:', event.error);
         };
 
+        recognition.onstart = function() {
+            document.getElementById("mic_off").style.display = 'none';
+            document.getElementById("mic_on").style.display = 'block';
+        };
+
+        recognition.onend = function() {
+            document.getElementById("mic_off").style.display = 'block';
+            document.getElementById("mic_on").style.display = 'none';
+        };
+
+        recognition.onstart
+
         // Start recognition
         recognition.start();
     } else {
