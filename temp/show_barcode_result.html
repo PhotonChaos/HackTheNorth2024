@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Barcode Result</h1>
+    <div id="result">Loading...</div>
+    <a href="{{ url_for('index') }}">Back to Live Stream</a>
+
+    <script>
+        async function fetchBarcodeResult() {
+            try {
+                const response = await fetch('/barcode_result');
+                const data = await response.json();
+                const resultElement = document.getElementById('result');
+                if (data.error) {
+                    resultElement.textContent = data.error;
+                } else {
+                    resultElement.textContent = JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                console.error('Error fetching barcode result:', error);
+                document.getElementById('result').textContent = 'Error fetching data';
+            }
+        }
+
+        // Fetch barcode result when the page loads
+        fetchBarcodeResult();
+    </script>
+</body>
+</html>
