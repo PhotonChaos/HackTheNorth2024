@@ -82,11 +82,24 @@ function start_speech_recognition() {
         recognition.onstart = function() {
             document.getElementById("mic_off").style.display = 'none';
             document.getElementById("mic_on").style.display = 'block';
+            document.getElementById("mic_button").style.backgroundColor = '#7fb3d5';
         };
 
         recognition.onend = function() {
             document.getElementById("mic_off").style.display = 'block';
             document.getElementById("mic_on").style.display = 'none';
+            document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
+            document.getElementById("transcription_result").style.color = 'black';
+
+            // Hide mic section
+            document.getElementById("mic_section").style.display = 'none';
+            document.getElementById("loading_section").style.display = 'block';
+
+            setTimeout(function() {
+                document.getElementById("loading_section").style.display = 'none';
+                document.getElementById("content_section").style.display = 'block';
+            }, 1000);
+        
         };
 
         recognition.onstart
