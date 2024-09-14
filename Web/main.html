@@ -640,7 +640,6 @@
       
       </div>
       
-
       <div id="mic_section" style="displayflex;display:none;justify-content: center;">
         <button id="mic_button" onclick="start_speech_recognition();" type="button" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
             <svg id="mic_off" class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -652,9 +651,28 @@
             </svg>          
         </button>
       </div>
+
+      
+<form style="width: 100%;">
+  <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+      <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+          <label for="comment" class="sr-only">Your question</label>
+          <textarea id="comment" rows="2" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required ></textarea>
+      </div>
+      <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+          <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+              Ask question
+          </button>
+          
+      </div>
+  </div>
+</form>
+<p class="ms-auto text-xs text-gray-500 dark:text-gray-400">Remember, contributions to this topic should follow our <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Community Guidelines</a>.</p>
+
       
     </a>
   
+
 
     </div>
 
