@@ -543,10 +543,35 @@
 
     <div id="example_questions" style="display: flex;justify-content: center;">
 
-      <div style="width:70%;" class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+      <div style="display:block;width:70%;" class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
         <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Start by checking out the answer to popular questions</p>
-        <ul class="mt-6 my-4 space-y-3">
+        
+        <form style="width: 100%;margin-top: 1.5rem;">
+          <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+              <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                  <label for="comment_area" class="sr-only">Your question</label>
+                  <textarea id="comment_area" rows="11" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write your question..." required ></textarea>
+              </div>
+              <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                  <button onclick="ask_question_from_text();" type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                      Ask question
+                  </button>
+                  <div class="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+                    <button onclick="switch_voice_recognition();" type="button" class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+         
+                         <svg class="w-5 h-5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9v3a5.006 5.006 0 0 1-5 5h-4a5.006 5.006 0 0 1-5-5V9m7 9v3m-3 0h6M11 3h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/>
+                        </svg>
+                        
+                        <span>&nbsp;&nbsp;Switch to voice recognition</span>
+                    </button>
+                </div>
+              </div>
+          </div>
+        </form>
+
+        <ul style="display: none;" class="mt-6 my-4 space-y-3">
         <li>
         <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
         <img src="./img/warning.png" style="height: 30px;width: 30px;">
@@ -586,7 +611,7 @@
         </svg>
         Where does this information come from?</a>
         </div>
-        </div>
+      </div>
 
       
     <a href="#" style="margin-left: 1.5rem;width: 50%;display: flex;align-items: center;justify-content: center;flex-direction: column;" class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -616,8 +641,8 @@
 
       </div>
 
-      <div id="placeholder_section" style="display: none;">
-      <img src="./img/bubble.png" style="height: 110px;width: 110px;">
+      <div id="placeholder_section" style="display: block;">
+      <img src="./img/bubble.png" style="display:block;margin-left:auto;margin-right:auto;height: 110px;width: 110px;">
       <p style="color: #b9bfc1;font-weight: 500;margin-top:4rem;" class="mb-2 text-lg text-gray-500 md:text-xl dark:text-gray-400">Answers will appear here</p>
       <p style="color: #b9bfc1;" class="text-gray-500 dark:text-gray-400">Start asking questions and get instant results</p>
       </div>
@@ -651,31 +676,10 @@
             </svg>          
         </button>
       </div>
-
-      
-<form style="width: 100%;">
-  <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-      <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-          <label for="comment" class="sr-only">Your question</label>
-          <textarea id="comment" rows="2" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required ></textarea>
-      </div>
-      <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-          <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-              Ask question
-          </button>
-          
-      </div>
-  </div>
-</form>
-<p class="ms-auto text-xs text-gray-500 dark:text-gray-400">Remember, contributions to this topic should follow our <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Community Guidelines</a>.</p>
-
       
     </a>
   
-
-
     </div>
-
 
     <!-- Show after a response has been generated -->
     <div id="response_options_dial" style="display: none;" data-dial-init class="fixed end-6 bottom-6 group">

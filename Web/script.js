@@ -112,3 +112,21 @@ function start_speech_recognition() {
 
 
 }
+
+
+
+
+// Ask question from text
+function ask_question_from_text() {
+
+    var text = document.getElementById("comment_area").innerHTML;
+
+}
+
+
+// Switch to speech recognition
+function switch_voice_recognition() {
+
+    alert("Hello world!");
+    
+}
