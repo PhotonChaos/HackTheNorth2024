@@ -43,4 +43,4 @@ def groqs(drug):
 
     return chat_completion.choices[0].message.content
 
-print(groqs("RANITIDINE HYDROCHLORIDE"))
+print(groqs("Purpose Antiseptic, Hand Sanitizer"))

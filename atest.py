@@ -38,16 +38,18 @@ while True:
              cv.line(frame, points[3], points[0], (0,255,0), 2)
              cv.putText(frame, result.barcode_text, points[0], cv.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255))
              res = str(result.barcode_text)
-             print(res)
+             #print(res)
              key = ''.join(res[1:len(res) - 1])
              part1 = key[0:5]
              part2 = key[5:8]
              part3 = key[8:10]
              code = part1 + "-" + part2 + "-" + part3
              url = 'https://api.fda.gov/drug/label.json?search=openfda.package_ndc="' + code + '"'
+             #print(url)
              resp = requests.get(url=url)
              data = resp.json()
-             print(data)
+             purpose = data['results'][0]['purpose'][0]
+             print(purpose)
              
               
  if len(barcodeTasks) < threadn:
