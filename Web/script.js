@@ -71,7 +71,7 @@ function start_speech_recognition() {
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 transcript += event.results[i][0].transcript;
             }
-            document.getElementById("transcription_result").innerHTML = transcript;
+            document.getElementById("final_voice_transcription").innerHTML = transcript;
         };
 
         // Event handler for errors
@@ -89,14 +89,14 @@ function start_speech_recognition() {
             document.getElementById("mic_off").style.display = 'block';
             document.getElementById("mic_on").style.display = 'none';
             document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
-            document.getElementById("transcription_result").style.color = 'black';
+            document.getElementById("final_voice_transcription").style.color = 'black';
 
-            // Hide mic section
-            document.getElementById("mic_section").style.display = 'none';
-            document.getElementById("loading_section").style.display = 'block';
+            // Hide placehodler and show loader
+            document.getElementById("placeholder_section").style.display = 'none';
+            document.getElementById("skeleton_section").style.display = 'flex';
 
             setTimeout(function() {
-                document.getElementById("loading_section").style.display = 'none';
+                document.getElementById("skeleton_section").style.display = 'none';
                 document.getElementById("content_section").style.display = 'block';
             }, 1000);
         
@@ -128,5 +128,5 @@ function ask_question_from_text() {
 function switch_voice_recognition() {
 
     alert("Hello world!");
-    
+
 }

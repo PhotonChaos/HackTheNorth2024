@@ -550,7 +550,7 @@
 
         <div id="mic_section" style="display:flex;justify-content: center;flex-direction: column;">
           
-          <h4 class="text-2xl dark:text-white" style="margin-top: 5rem;margin-bottom: 4rem;">Ask using your <b>voice</b></h4>
+          <h4 id="final_voice_transcription" class="text-2xl dark:text-white" style="margin-top: 5rem;margin-bottom: 4rem;">Ask using your <b>voice</b></h4>
 
           <div style="width: 100%;display: flex;justify-content: center;">
           <button style="margin-top: 1rem;margin-bottom: 1rem;" id="mic_button" onclick="start_speech_recognition();" type="button" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
@@ -607,7 +607,7 @@
           </div>
         </form>
 
-        <ul style="display: none;" class="mt-6 my-4 space-y-3">
+        <ul id="suggested_questions" style="display: none;" class="mt-6 my-4 space-y-3">
         <li>
         <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
         <img src="./img/warning.png" style="height: 30px;width: 30px;">
