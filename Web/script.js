@@ -130,3 +130,16 @@ function switch_voice_recognition() {
     alert("Hello world!");
 
 }
+
+
+function switch_text_input() {
+
+    document.getElementById("mic_section").style.display = "none";
+    document.getElementById("text_input_section").style.display = "block";
+}
+
+
+function switch_to_examples() {
+    document.getElementById("text_input_section").style.display = "none";
+    document.getElementById("suggested_questions").style.display = "block";
+}
