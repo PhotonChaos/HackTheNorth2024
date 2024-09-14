@@ -41,6 +41,12 @@ function validate_pdc_input() {
     if (pdcFormatRegex.test(input)) {
 
         // Show loading screen (simple spinner loader, it's a fast request)
+        document.getElementById("medication_code_input").style.display = "none";
+        document.getElementById("spinner_loader").style.display = "flex";
+        document.body.style.overflow = 'hidden';
+
+        // Make the basic information request
+        // ...
 
     }
 
@@ -59,6 +65,7 @@ function show_medication_information(name, merchant) {
     document.getElementById("medication_big_detail").innerHTML = merchant;
 
     document.getElementById("main_gradient").style.display = "none";
+    document.getElementById("spinner_loader").style.display = "none";
     document.getElementById("medication_voice_question").style.display = "block";
 
 }
