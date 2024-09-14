@@ -469,7 +469,19 @@
 
 <div class="p-4 md:ml-64 h-auto pt-20" style="margin-left: auto;width: 83.5%;">
           
-            
+<section id="spinner_loader">
+
+  <div role="status">
+    <svg aria-hidden="true" class="inline w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+    <span class="sr-only">Loading...</span>
+  </div>
+
+</section> 
+
+
 <section id="medication_code_input" style="display: none; min-height: calc(100vh - 97px)" class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
         <a href="#" class="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800">
@@ -501,7 +513,7 @@
 
               <p id="manual_pdc_errortext" style="display: none;" class="mb-4 mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> The code is in bad format</p>
 
-              <a onclick="switch_to_examples();" href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Go back</a>
+              <a onclick="selection_method_back();" href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Go back</a>
 
         </form>
 
@@ -519,23 +531,15 @@
     
 </section>
 
-<section id="medication_voice_question" style="min-height: calc(100vh - 97px);z-index:100;">
+<section id="medication_voice_question" style="display:none;min-height: calc(100vh - 97px);z-index:100;">
   
-  <!--<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <div class="flex flex-col items-center mt-8 mb-8">
-        <img class="w-10 h-10 mb-4" src="./img/medication.png" />
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Nicotine Polacrilex</h5>
-        <span class="text-sm text-gray-500 dark:text-gray-400">Dr. Reddy's Laboratories Inc.</span>
-    </div>
-  </div>-->
-
-  <div style="padding-top: 0px;" class="px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
+  <div style="padding-top: 0px;padding-bottom: 0px;" class="px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
   
     <!-- bg-white border border-gray-200 shadow -->
     <a href="#" style="width: 100%;cursor: default;" class="block p-6 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
-    <h1 class="text-4xl font-extrabold dark:text-white" style="margin-left: -10px;"><small id="transcription_result" class="ms-2 font-semibold text-gray-800 dark:text-gray-400">💊 &nbsp; Nicotine Polacrilex</small></h1>
-    <p class="mt-2 mb-3 text-gray-500 dark:text-gray-400">Dr. Reddy's Laboratories Inc.</p>
+    <h1 class="text-4xl font-extrabold dark:text-white" style="margin-left: -10px;"><small id="medication_big_name" class="ms-2 font-semibold text-gray-800 dark:text-gray-400">💊 &nbsp; Nicotine Polacrilex</small></h1>
+    <p id="medication_big_detail" class="mt-2 mb-3 text-gray-500 dark:text-gray-400">Dr. Reddy's Laboratories Inc.</p>
 
     </a>
 
@@ -545,10 +549,10 @@
 
       <div style="display:block;width:70%;" class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
-        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Start by checking out the answer to popular questions</p>
+        <p id="medication_tip_text" class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Start by checking out the answer to popular questions</p>
         
-
-        <div id="mic_section" style="display:flex;justify-content: center;flex-direction: column;">
+        <!-- MIC -->
+        <div id="mic_section" style="display:flex;display:none;justify-content: center;flex-direction: column;">
           
           <h4 id="final_voice_transcription" class="text-2xl dark:text-white" style="margin-top: 5rem;margin-bottom: 4rem;">Ask using your <b>voice</b></h4>
 
@@ -572,7 +576,8 @@
 
         </div>
 
-        <form id="text_input_section" style="display:none;width: 100%;margin-top: 1.5rem;">
+        <!-- TEXT -->
+        <form id="text_input_section" style="display:none;width: 100%;margin-top: 1.5rem;margin-bottom:20px;">
           <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                   <label for="comment_area" class="sr-only">Your question</label>
@@ -583,7 +588,7 @@
                       Ask question
                   </button>
                   <div class="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
-                    <button onclick="switch_voice_recognition();" type="button" class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                    <button onclick="switch_to_examples();" type="button" class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
          
                       <svg class="w-6 h-6 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
@@ -603,7 +608,8 @@
           </div>
         </form>
 
-        <ul id="suggested_questions" style="display: none;" class="mt-6 my-4 space-y-3">
+        <!-- EXAMPLES -->
+        <ul id="suggested_questions" style="display: block;" class="mt-6 my-4 space-y-3">
         <li>
         <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
         <img src="./img/warning.png" style="height: 30px;width: 30px;">
@@ -630,12 +636,14 @@
         </a>
         </li>
         <li>
-        <a style="background-color:#3b82f6;" href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+        <a onclick="switch_voice_recognition();" style="background-color:#3b82f6;" href="#" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
           <img src="./img/question.png" style="height: 30px;width: 30px;">
         <span style="color:white;font-weight: 600;" class="flex-1 ms-3 whitespace-nowrap">Ask a custom question</span>
         </a>
         </li>
         </ul>
+
+        <!-- Disclaimer -->
         <div>
         <a href="https://open.fda.gov/" class="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
         <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -643,6 +651,7 @@
         </svg>
         Where does this information come from?</a>
         </div>
+
       </div>
 
       
@@ -762,7 +771,7 @@
 </section>
 
 
-<div style="display: none;" class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
+<div id="main_gradient" style="display: ;" class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
 
 </div>
 

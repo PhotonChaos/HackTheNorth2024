@@ -40,8 +40,7 @@ function validate_pdc_input() {
 
     if (pdcFormatRegex.test(input)) {
 
-        // Allow to continue
-        alert("Success!");
+        // Show loading screen (simple spinner loader, it's a fast request)
 
     }
 
@@ -51,6 +50,18 @@ function validate_pdc_input() {
 
 }
 
+
+
+// Medication information
+function show_medication_information(name, merchant) {
+
+    document.getElementById("medication_big_name").innerHTML = "💊 &nbsp; " + name;
+    document.getElementById("medication_big_detail").innerHTML = merchant;
+
+    document.getElementById("main_gradient").style.display = "none";
+    document.getElementById("medication_voice_question").style.display = "block";
+
+}
 
 
 
@@ -127,7 +138,9 @@ function ask_question_from_text() {
 // Switch to speech recognition
 function switch_voice_recognition() {
 
-    alert("Hello world!");
+    document.getElementById("text_input_section").style.display = "none";
+    document.getElementById("suggested_questions").style.display = "none";
+    document.getElementById("mic_section").style.display = "flex";
 
 }
 
