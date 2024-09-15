@@ -166,3 +166,11 @@ function switch_to_examples() {
     document.getElementById("text_input_section").style.display = "none";
     document.getElementById("suggested_questions").style.display = "block";
 }
+
+
+
+// Bottom bar
+function clear_conversations() {
+    // Clear the conversation bar
+    // ...
+}
