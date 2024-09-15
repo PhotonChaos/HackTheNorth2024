@@ -11,8 +11,13 @@ def video_feed():
 @app.route('/')
 def index():
     atest.clear_output()
-    # Display the homepage with the video stream
+    # Display the intro page
     return render_template('index.html')
+
+@app.route('/main')
+def main():
+    # Display the main page with the video stream
+    return render_template('main.html')
 
 @app.route('/results')
 def results():
