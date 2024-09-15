@@ -224,3 +224,22 @@ function answer_question(text) {
     }, 1000);
 
 }
+
+
+function process_answer(answer) {
+
+    // Set icon images if detected
+    if (answer.toLowerCase().includes("yes")) {
+        document.getElementById("yes_no_response_icon").style.display = 'block';
+        document.getElementById("yes_no_response_icon").src = "./img/yes.png";
+    }
+
+    else if (answer.toLowerCase().includes("no")) {
+        document.getElementById("yes_no_response_icon").style.display = 'block';
+        document.getElementById("yes_no_response_icon").src = "./img/no.png";
+    }
+
+    // Set the answer text
+    document.getElementById("llm_answer").innerHTML = answer;
+
+}
