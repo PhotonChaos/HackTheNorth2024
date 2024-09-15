@@ -2,6 +2,11 @@
 
 // September 2024
 
+// Avoid screen reload
+document.getElementById('manual_input_form').addEventListener('submit', async function(event) {
+    event.preventDefault(); } // Prevent page reload
+);
+
 function start_scan() {
     document.getElementById("medication_code_input").style.display = "none";
     //document.getElementById("main_gradient").style.display = "none";
@@ -64,6 +69,9 @@ function validate_pdc_input() {
 // Medication information
 function show_medication_information(name, merchant) {
 
+    // Add to the conversation
+    add_conversation(name);
+    
     document.getElementById("medication_big_name").innerHTML = "💊 &nbsp; " + name;
     document.getElementById("medication_big_detail").innerHTML = merchant;
 
@@ -112,14 +120,7 @@ function start_speech_recognition() {
             document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
             document.getElementById("final_voice_transcription").style.color = 'black';
 
-            // Hide placehodler and show loader
-            document.getElementById("placeholder_section").style.display = 'none';
-            document.getElementById("skeleton_section").style.display = 'flex';
-
-            setTimeout(function() {
-                document.getElementById("skeleton_section").style.display = 'none';
-                document.getElementById("content_section").style.display = 'block';
-            }, 1000);
+            answer_question(transcript);
         
         };
 
@@ -140,7 +141,8 @@ function start_speech_recognition() {
 // Ask question from text
 function ask_question_from_text() {
 
-    var text = document.getElementById("comment_area").innerHTML;
+    var text = document.getElementById("comment_area").value;
+    answer_question(text);
 
 }
 
@@ -165,4 +167,82 @@ function switch_text_input() {
 function switch_to_examples() {
     document.getElementById("text_input_section").style.display = "none";
     document.getElementById("suggested_questions").style.display = "block";
+}
+
+
+
+// Bottom bar
+function clear_conversations() {
+    
+    // Clear the conversation bar
+    const elements = document.querySelectorAll('.user_added');
+
+    // Iterate over each element and remove its class attributes
+    elements.forEach(element => {
+    element.className = '';
+    });
+}
+
+
+function add_conversation(conversation_name) {
+
+    // Add a new conversation to the conversation bar
+    var template = `
+    <li class="user_added">
+        <a href="#" class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+        >
+        <svg class="w-6 h-6 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M3.559 4.544c.355-.35.834-.544 1.33-.544H19.11c.496 0 .975.194 1.33.544.356.35.559.829.559 1.331v9.25c0 .502-.203.981-.559 1.331-.355.35-.834.544-1.33.544H15.5l-2.7 3.6a1 1 0 0 1-1.6 0L8.5 17H4.889c-.496 0-.975-.194-1.33-.544A1.868 1.868 0 0 1 3 15.125v-9.25c0-.502.203-.981.559-1.331ZM7.556 7.5a1 1 0 1 0 0 2h8a1 1 0 0 0 0-2h-8Zm0 3.5a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2H7.556Z" clip-rule="evenodd"/>
+        </svg>
+        
+        <span class="ml-3">${conversation_name}</span>
+        </a>
+    </li>
+    `;
+
+    // Create a temporary container to hold the HTML string
+    var temp_container = document.createElement('div');
+
+    // Set the innerHTML of the container to the template
+    temp_container.innerHTML = template;
+
+    document.getElementById("vertical_bar_menu").appendChild(temp_container.firstElementChild);
+
+}
+
+
+
+
+// Question-answering functions
+function answer_question(text) {
+
+    // Hide placehodler and show loader
+    document.getElementById("placeholder_section").style.display = 'none';
+    document.getElementById("skeleton_section").style.display = 'flex';
+
+    // Make an API request
+    setTimeout(function() {
+        document.getElementById("skeleton_section").style.display = 'none';
+        document.getElementById("content_section").style.display = 'block';
+    }, 1000);
+
+}
+
+
+function process_answer(answer) {
+
+    // Set icon images if detected
+    if (answer.toLowerCase().includes("yes")) {
+        document.getElementById("yes_no_response_icon").style.display = 'block';
+        document.getElementById("yes_no_response_icon").src = "./img/yes.png";
+    }
+
+    else if (answer.toLowerCase().includes("no")) {
+        document.getElementById("yes_no_response_icon").style.display = 'block';
+        document.getElementById("yes_no_response_icon").src = "./img/no.png";
+    }
+
+    // Set the answer text
+    document.getElementById("llm_answer").innerHTML = answer;
+
 }
