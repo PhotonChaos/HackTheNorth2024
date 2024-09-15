@@ -117,14 +117,7 @@ function start_speech_recognition() {
             document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
             document.getElementById("final_voice_transcription").style.color = 'black';
 
-            // Hide placehodler and show loader
-            document.getElementById("placeholder_section").style.display = 'none';
-            document.getElementById("skeleton_section").style.display = 'flex';
-
-            setTimeout(function() {
-                document.getElementById("skeleton_section").style.display = 'none';
-                document.getElementById("content_section").style.display = 'block';
-            }, 1000);
+            answer_question(transcript);
         
         };
 
@@ -145,7 +138,7 @@ function start_speech_recognition() {
 // Ask question from text
 function ask_question_from_text() {
 
-    var text = document.getElementById("comment_area").innerHTML;
+    var text = document.getElementById("comment_area").value;
     answer_question(text);
 
 }
@@ -220,6 +213,14 @@ function add_conversation(conversation_name) {
 // Question-answering functions
 function answer_question(text) {
 
-    alert(text);
+    // Hide placehodler and show loader
+    document.getElementById("placeholder_section").style.display = 'none';
+    document.getElementById("skeleton_section").style.display = 'flex';
+
+    // Make an API request
+    setTimeout(function() {
+        document.getElementById("skeleton_section").style.display = 'none';
+        document.getElementById("content_section").style.display = 'block';
+    }, 1000);
 
 }
