@@ -2,6 +2,11 @@
 
 // September 2024
 
+// Avoid screen reload
+document.getElementById('manual_input_form').addEventListener('submit', async function(event) {
+    event.preventDefault(); } // Prevent page reload
+);
+
 function start_scan() {
     document.getElementById("medication_code_input").style.display = "none";
     //document.getElementById("main_gradient").style.display = "none";
@@ -141,6 +146,7 @@ function start_speech_recognition() {
 function ask_question_from_text() {
 
     var text = document.getElementById("comment_area").innerHTML;
+    answer_question(text);
 
 }
 
@@ -205,5 +211,15 @@ function add_conversation(conversation_name) {
     temp_container.innerHTML = template;
 
     document.getElementById("vertical_bar_menu").appendChild(temp_container.firstElementChild);
+
+}
+
+
+
+
+// Question-answering functions
+function answer_question(text) {
+
+    alert(text);
 
 }
