@@ -7,7 +7,7 @@ import os
 
 def get_info(drug):
 
-    exa = Exa('54f5502b-e7ac-450c-a021-cf7b139dfba5')
+    exa = Exa('key')
 
 
     result = exa.search_and_contents(
