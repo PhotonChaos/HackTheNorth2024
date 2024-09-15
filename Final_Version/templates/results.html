@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Stream</title>
+</head>
+<body>
+    <h1>Video Feed</h1>
+    <img src="{{ url_for('video_feed') }}" style="width: 100%; max-width: 600px;"/>
+    <h2>Latest Results</h2>
+    <div id="results"></div>
+
+    <script>
+        function fetchResults() {
+            fetch('/results')
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.error('Error fetching results:', error));
+        }
+
+        // Fetch results every 5 seconds
+        setInterval(fetchResults, 5000);
+    </script>
+</body>
+</html>
