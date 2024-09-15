@@ -28,7 +28,7 @@ client = Groq(
 def groqs(prompt, drug):
 
     result = get_info(drug)
-    content = f"[non-verbose] Answer the question {prompt}, considering {drug} return only the json structure: {{'quick-answer': string, 'explanation': string}}"
+    content = f"[non-verbose] Answer the question {prompt}, considering {drug} return ONLY a quick answer, responsibly, just the string and nothing more." #only the json structure: {{'quick-answer': string, 'explanation': string}}"
     #print(content)
 
     chat_completion = client.chat.completions.create(

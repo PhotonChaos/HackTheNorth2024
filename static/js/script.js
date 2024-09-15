@@ -7,6 +7,11 @@ document.getElementById('manual_input_form').addEventListener('submit', async fu
     event.preventDefault(); } // Prevent page reload
 );
 
+document.getElementById('text_input_section').addEventListener('submit', async function(event) {
+    event.preventDefault(); } // Prevent page reload
+);
+
+
 function start_scan() {
     document.getElementById("medication_code_input").style.display = "none";
     //document.getElementById("main_gradient").style.display = "none";
@@ -125,7 +130,7 @@ function start_speech_recognition() {
             document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
             document.getElementById("final_voice_transcription").style.color = 'black';
 
-            answer_question(transcript);
+            answer_question(document.getElementById("final_voice_transcription").innerHTML);
         
         };
 
@@ -236,10 +241,10 @@ function answer_question(text) {
         },
         body: JSON.stringify({ prompt: text, drug: global_data }),
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
         console.log("Response from server:", data);
-        process_answer(data["quick-answer"]);
+        process_answer(data);
     })
     .catch((error) => {
         console.error('Error:', error);
