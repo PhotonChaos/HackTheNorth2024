@@ -69,6 +69,9 @@ function validate_pdc_input() {
 // Medication information
 function show_medication_information(name, merchant) {
 
+    // Add to the conversation
+    add_conversation(name);
+    
     document.getElementById("medication_big_name").innerHTML = "💊 &nbsp; " + name;
     document.getElementById("medication_big_detail").innerHTML = merchant;
 
