@@ -22,7 +22,7 @@ def get_info(drug):
 
 
 client = Groq(
-    api_key="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",
+    api_key="key",
 )
 
 def groqs(prompt, drug):
