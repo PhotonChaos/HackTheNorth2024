@@ -40,8 +40,13 @@ function validate_pdc_input() {
 
     if (pdcFormatRegex.test(input)) {
 
-        // Allow to continue
-        alert("Success!");
+        // Show loading screen (simple spinner loader, it's a fast request)
+        document.getElementById("medication_code_input").style.display = "none";
+        document.getElementById("spinner_loader").style.display = "flex";
+        document.body.style.overflow = 'hidden';
+
+        // Make the basic information request
+        // ...
 
     }
 
@@ -51,6 +56,19 @@ function validate_pdc_input() {
 
 }
 
+
+
+// Medication information
+function show_medication_information(name, merchant) {
+
+    document.getElementById("medication_big_name").innerHTML = "💊 &nbsp; " + name;
+    document.getElementById("medication_big_detail").innerHTML = merchant;
+
+    document.getElementById("main_gradient").style.display = "none";
+    document.getElementById("spinner_loader").style.display = "none";
+    document.getElementById("medication_voice_question").style.display = "block";
+
+}
 
 
 
@@ -71,7 +89,7 @@ function start_speech_recognition() {
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 transcript += event.results[i][0].transcript;
             }
-            document.getElementById("transcription_result").innerHTML = transcript;
+            document.getElementById("final_voice_transcription").innerHTML = transcript;
         };
 
         // Event handler for errors
@@ -89,14 +107,14 @@ function start_speech_recognition() {
             document.getElementById("mic_off").style.display = 'block';
             document.getElementById("mic_on").style.display = 'none';
             document.getElementById("mic_button").style.backgroundColor = 'rgb(26 86 219/var(--tw-bg-opacity))';
-            document.getElementById("transcription_result").style.color = 'black';
+            document.getElementById("final_voice_transcription").style.color = 'black';
 
-            // Hide mic section
-            document.getElementById("mic_section").style.display = 'none';
-            document.getElementById("loading_section").style.display = 'block';
+            // Hide placehodler and show loader
+            document.getElementById("placeholder_section").style.display = 'none';
+            document.getElementById("skeleton_section").style.display = 'flex';
 
             setTimeout(function() {
-                document.getElementById("loading_section").style.display = 'none';
+                document.getElementById("skeleton_section").style.display = 'none';
                 document.getElementById("content_section").style.display = 'block';
             }, 1000);
         
@@ -111,4 +129,37 @@ function start_speech_recognition() {
     }
 
 
+}
+
+
+
+
+// Ask question from text
+function ask_question_from_text() {
+
+    var text = document.getElementById("comment_area").innerHTML;
+
+}
+
+
+// Switch to speech recognition
+function switch_voice_recognition() {
+
+    document.getElementById("text_input_section").style.display = "none";
+    document.getElementById("suggested_questions").style.display = "none";
+    document.getElementById("mic_section").style.display = "flex";
+
+}
+
+
+function switch_text_input() {
+
+    document.getElementById("mic_section").style.display = "none";
+    document.getElementById("text_input_section").style.display = "block";
+}
+
+
+function switch_to_examples() {
+    document.getElementById("text_input_section").style.display = "none";
+    document.getElementById("suggested_questions").style.display = "block";
 }
