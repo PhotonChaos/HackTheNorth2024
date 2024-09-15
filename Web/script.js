@@ -3,7 +3,7 @@
 // September 2024
 
 function start_scan() {
-    alert("WIP");
+    document.getElementById("medication_code_input").style.display = "none";
 }
 
 
