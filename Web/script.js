@@ -4,6 +4,7 @@
 
 function start_scan() {
     document.getElementById("medication_code_input").style.display = "none";
+    document.getElementById("main_gradient").style.display = "none";
 }
 
 
