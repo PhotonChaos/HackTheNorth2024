@@ -25,11 +25,11 @@ client = Groq(
     api_key="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",
 )
 
-def groqs(drug):
+def groqs(prompt, drug):
 
     result = get_info(drug)
-    content = f"Explain {drug}, here is some context {result}"
-    print(content)
+    content = f"[non-verbose] Answer the question {prompt}, considering {drug} return only the json structure: {{'quick-answer': string, 'explanation': string}}"
+    #print(content)
 
     chat_completion = client.chat.completions.create(
         messages=[
@@ -41,6 +41,9 @@ def groqs(drug):
         model="llama3-8b-8192",
     )
 
-    return chat_completion.choices[0].message.content
+    final = chat_completion.choices[0].message.content
 
-print(groqs("Purpose Antiseptic, Hand Sanitizer"))
+    return final
+
+
+#print(groqs("Can I take this while drunk?", "{'name': 'Duloxetine', 'manufacturer_name': 'Asclemed USA, Inc.', 'active_ingredients': [{'name': 'DULOXETINE HYDROCHLORIDE', 'strength': '30 mg/1'}]}"))

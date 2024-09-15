@@ -12,6 +12,9 @@ function start_scan() {
     //document.getElementById("main_gradient").style.display = "none";
     document.getElementById("medication_scanner").style.display = "flex";
     document.body.style.overflow = 'hidden';
+    
+
+
 }
 
 
@@ -19,6 +22,8 @@ function manual_input() {
     // Display the input form
     document.getElementById("selection_buttons").style.display = "none";
     document.getElementById("manual_input_form").style.display = "block";
+
+    // Make request
 }
 
 function selection_method_back() {
@@ -218,13 +223,29 @@ function answer_question(text) {
 
     // Hide placehodler and show loader
     document.getElementById("placeholder_section").style.display = 'none';
+    document.getElementById("content_section").style.display = 'none';
+    document.getElementById("yes_no_response_icon").style.display = 'none';
     document.getElementById("skeleton_section").style.display = 'flex';
 
-    // Make an API request
-    setTimeout(function() {
+    // Call groq text and global_data
+    // Make an API request to Flask backend
+    fetch('/ask_question', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: text, drug: global_data }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Response from server:", data);
+        process_answer(data["quick-answer"]);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
         document.getElementById("skeleton_section").style.display = 'none';
-        document.getElementById("content_section").style.display = 'block';
-    }, 1000);
+        document.getElementById("content_section").innerText = 'Error retrieving answer.';
+    });
 
 }
 
@@ -234,15 +255,20 @@ function process_answer(answer) {
     // Set icon images if detected
     if (answer.toLowerCase().includes("yes")) {
         document.getElementById("yes_no_response_icon").style.display = 'block';
-        document.getElementById("yes_no_response_icon").src = "./img/yes.png";
+        document.getElementById("yes_no_response_icon").src = "/static/images/yes.png";
     }
 
     else if (answer.toLowerCase().includes("no")) {
         document.getElementById("yes_no_response_icon").style.display = 'block';
-        document.getElementById("yes_no_response_icon").src = "./img/no.png";
+        document.getElementById("yes_no_response_icon").src = "/static/images/no.png";
     }
 
     // Set the answer text
     document.getElementById("llm_answer").innerHTML = answer;
+
+    // Hide loader and show content
+    document.getElementById("skeleton_section").style.display = 'none';
+    document.getElementById("content_section").style.display = 'block';
+
 
 }
